@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  fintwin360-mysql-db:
+    container_name: fintwin360
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'dev'
+      MYSQL_USER: 'testuser'
+      MYSQL_PASSWORD: 'Secret123!'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3306:3306'
+    volumes:
+      - fintwin360-db:/var/lib/mysql
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+volumes:
+  fintwin360-db:
+
+      
